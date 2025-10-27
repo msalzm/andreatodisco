@@ -111,3 +111,32 @@ p {
   background: #ff00de;
   color: white;
 }
+
+/* === ASCII Dino Overlay === */
+#dino {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Mono",
+               "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace",
+               "Source Code Pro", "Fira Code", monospace;
+  white-space: pre;
+  line-height: 1.05;
+  font-size: clamp(10px, 1.25vw, 16px);
+  color: #a3ffff;
+  text-shadow:
+    0 0 6px rgba(0,255,255,0.9),
+    0 0 14px rgba(255,0,255,0.35),
+    0 0 28px rgba(0,255,255,0.25);
+  opacity: 0.95;
+  letter-spacing: 0.5px;
+  z-index: 2;           /* Above canvas and content, but click-through */
+  pointer-events: none; /* Don’t block links/buttons */
+}
+
+@keyframes dinoPulse {
+  0%,100% { filter: drop-shadow(0 0 2px rgba(0,255,255,0.25)); }
+  50%     { filter: drop-shadow(0 0 6px rgba(255,0,255,0.35)); }
+}
+#dino { animation: dinoPulse 3s ease-in-out infinite; }
