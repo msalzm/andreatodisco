@@ -118,11 +118,9 @@ p {
   left: 50%;
   bottom: 24px;
   transform: translateX(-50%);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Mono",
-               "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace",
-               "Source Code Pro", "Fira Code", monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
   white-space: pre;
-  line-height: 1.05;
+  line-height: 1.1;
   font-size: clamp(10px, 1.25vw, 16px);
   color: #a3ffff;
   text-shadow:
@@ -130,13 +128,12 @@ p {
     0 0 14px rgba(255,0,255,0.35),
     0 0 28px rgba(0,255,255,0.25);
   opacity: 0.95;
-  letter-spacing: 0.5px;
-  z-index: 2;           /* Above canvas and content, but click-through */
-  pointer-events: none; /* Don’t block links/buttons */
+  z-index: 2;
+  pointer-events: none;
+  animation: dinoPulse 3s ease-in-out infinite;
 }
 
 @keyframes dinoPulse {
-  0%,100% { filter: drop-shadow(0 0 2px rgba(0,255,255,0.25)); }
-  50%     { filter: drop-shadow(0 0 6px rgba(255,0,255,0.35)); }
+  0%,100% { filter: drop-shadow(0 0 3px rgba(0,255,255,0.3)); }
+  50%     { filter: drop-shadow(0 0 7px rgba(255,0,255,0.45)); }
 }
-#dino { animation: dinoPulse 3s ease-in-out infinite; }
