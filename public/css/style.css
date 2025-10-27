@@ -1,27 +1,16 @@
-/* === Canvas Background === */
-#disco-canvas {
+/* === Snake Canvas Background === */
+#snake-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 0;            /* behind content */
   background: transparent;
+  pointer-events: none;  /* let clicks go through */
 }
 
-
-
-
-/* === Dark Disco Theme === */
-@keyframes neonGlow {
-  0%, 100% {
-    text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff0080;
-  }
-  50% {
-    text-shadow: 0 0 20px #00ffea, 0 0 30px #ff00de, 0 0 40px #00ffff;
-  }
-}
-
+/* === Disco Background Animation === */
 @keyframes colorPulse {
   0% {
     background-position: 0% 50%;
@@ -34,49 +23,60 @@
   }
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(270deg, #050505, #0a001a, #000000);
-  color: #e0e0e0;
-  text-align: center;
-  padding: 2rem;
-  margin: 0;
-  background-size: 600% 600%;
-  animation: colorPulse 20s ease infinite;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* === Neon Text Glow Animation === */
+@keyframes neonGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 8px #ff00ff,
+      0 0 16px #00ffff,
+      0 0 24px #ff0080;
+  }
+  50% {
+    text-shadow:
+      0 0 16px #00ffea,
+      0 0 24px #ff00de,
+      0 0 32px #00ffff;
+  }
 }
 
+/* === Base Page === */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #e0e0e0;
+  background: linear-gradient(270deg, #050505, #0a001a, #000000);
+  background-size: 600% 600%;
+  animation: colorPulse 20s ease infinite;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* === Main Content (above canvas) === */
+main {
+  position: relative;
+  z-index: 1; /* on top of snakes */
+  max-width: 800px;
+  padding: 2rem;
+}
+
+/* === Headline === */
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   margin-bottom: 0.5rem;
   animation: neonGlow 3s infinite alternate;
 }
 
+/* === Paragraph === */
 p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin: 1rem 0;
-  color: #ccc;
-}
-
-/* === PDF Frame === */
-.pdf-container {
-  margin: 2rem auto;
-  max-width: 800px;
-  height: 500px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3),
-              0 0 40px rgba(255, 0, 255, 0.3);
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.pdf-container iframe {
-  width: 100%;
-  height: 100%;
+  color: #cccccc;
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
 }
 
 /* === Button === */
@@ -90,6 +90,7 @@ p {
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
+  letter-spacing: 0.5px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
 }
@@ -99,7 +100,7 @@ p {
   box-shadow: 0 0 25px rgba(255, 0, 255, 0.9);
 }
 
-/* === Scroll & Selection Styling === */
+/* === Scrollbar & Text Selection === */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -110,30 +111,4 @@ p {
 ::selection {
   background: #ff00de;
   color: white;
-}
-
-/* === ASCII Dino Overlay === */
-#dino {
-  position: fixed;
-  left: 50%;
-  bottom: 24px;
-  transform: translateX(-50%);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-  white-space: pre;
-  line-height: 1.1;
-  font-size: clamp(10px, 1.25vw, 16px);
-  color: #a3ffff;
-  text-shadow:
-    0 0 6px rgba(0,255,255,0.9),
-    0 0 14px rgba(255,0,255,0.35),
-    0 0 28px rgba(0,255,255,0.25);
-  opacity: 0.95;
-  z-index: 2;
-  pointer-events: none;
-  animation: dinoPulse 3s ease-in-out infinite;
-}
-
-@keyframes dinoPulse {
-  0%,100% { filter: drop-shadow(0 0 3px rgba(0,255,255,0.3)); }
-  50%     { filter: drop-shadow(0 0 7px rgba(255,0,255,0.45)); }
 }

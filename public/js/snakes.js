@@ -57,8 +57,10 @@ function stepSnakes() {
 // --- draw everything ---
 function drawSnakes() {
   // translucent fade background
-  ctx.fillStyle = "rgba(255, 255, 255, 1)";
+  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
   ctx.fillRect(0, 0, w, h);
+  ctx.globalCompositeOperation = "lighter"; // makes colors add like neon light
+
 
   snakes.forEach((s) => {
     if (s.trail.length < 2) return;
@@ -75,6 +77,8 @@ function drawSnakes() {
       ctx.stroke();
     }
   });
+  ctx.globalCompositeOperation = "source-over";
+
 }
 
 // --- loop ---
