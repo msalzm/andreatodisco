@@ -1,6 +1,6 @@
-// === Progressive ASCII Dinosaur Reveal ===
+// === Progressive ASCII Dinosaur Reveal (Mobile + Desktop Friendly) ===
 
-// Three dino stages
+// Three stages of the dino
 const DINOS = [
 String.raw`
                 __
@@ -40,7 +40,6 @@ let revealed = 0;
 const PX_PER_CHAR = 18; // movement needed to reveal one character
 let currentArt = DINOS[stage];
 
-// Build revealable indexes (ignore newlines and spaces)
 function getRevealableIndices(art) {
   const idxs = [];
   for (let i = 0; i < art.length; i++) {
@@ -50,7 +49,6 @@ function getRevealableIndices(art) {
 }
 let revealable = getRevealableIndices(currentArt);
 
-// Render partial dinosaur
 function render(revealedCount) {
   const revealSet = new Set(revealable.slice(0, revealedCount));
   let out = "";
@@ -62,17 +60,17 @@ function render(revealedCount) {
   dinoEl.textContent = out;
 }
 
-// Reveal based on movement
-function onMove(x, y) {
+function handleMovement(x, y) {
   if (lastX == null) { lastX = x; lastY = y; return; }
-  const dx = x - lastX, dy = y - lastY;
+  const dx = x - lastX;
+  const dy = y - lastY;
   const dist = Math.hypot(dx, dy);
   totalDistance += dist;
-  lastX = x; lastY = y;
+  lastX = x;
+  lastY = y;
 
   const toReveal = Math.floor(totalDistance / PX_PER_CHAR);
 
-  // If all revealed, move to next dino stage
   if (toReveal > revealable.length && stage < DINOS.length - 1) {
     stage++;
     currentArt = DINOS[stage];
@@ -86,11 +84,27 @@ function onMove(x, y) {
   }
 }
 
-document.addEventListener("mousemove", e => onMove(e.clientX, e.clientY), { passive: true });
-document.addEventListener("touchmove", e => {
+// Mouse support
+document.addEventListener("mousemove", (e) => handleMovement(e.clientX, e.clientY), { passive: true });
+
+// Touch support (tracks finger movement even without scroll)
+let lastTouch = null;
+document.addEventListener("touchstart", (e) => {
   const t = e.touches[0];
-  if (t) onMove(t.clientX, t.clientY);
+  if (t) {
+    lastTouch = { x: t.clientX, y: t.clientY };
+    handleMovement(t.clientX, t.clientY);
+  }
 }, { passive: true });
 
-// Initialize
+document.addEventListener("touchmove", (e) => {
+  const t = e.touches[0];
+  if (t) handleMovement(t.clientX, t.clientY);
+}, { passive: true });
+
+document.addEventListener("touchend", () => {
+  lastTouch = null;
+}, { passive: true });
+
+// Initialize display
 render(0);
