@@ -1,0 +1,99 @@
+/* === Dark Disco Theme === */
+@keyframes neonGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff0080;
+  }
+  50% {
+    text-shadow: 0 0 20px #00ffea, 0 0 30px #ff00de, 0 0 40px #00ffff;
+  }
+}
+
+@keyframes colorPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(270deg, #050505, #0a001a, #000000);
+  color: #e0e0e0;
+  text-align: center;
+  padding: 2rem;
+  margin: 0;
+  background-size: 600% 600%;
+  animation: colorPulse 20s ease infinite;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  animation: neonGlow 3s infinite alternate;
+}
+
+p {
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  color: #ccc;
+}
+
+/* === PDF Frame === */
+.pdf-container {
+  margin: 2rem auto;
+  max-width: 800px;
+  height: 500px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3),
+              0 0 40px rgba(255, 0, 255, 0.3);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.pdf-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* === Button === */
+.btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff00de, #00ffff, #ff8c00);
+  background-size: 300% 300%;
+  animation: colorPulse 6s ease infinite;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.9);
+}
+
+/* === Scroll & Selection Styling === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff00de, #00ffff);
+  border-radius: 10px;
+}
+::selection {
+  background: #ff00de;
+  color: white;
+}
