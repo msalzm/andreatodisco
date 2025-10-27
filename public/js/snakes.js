@@ -60,7 +60,7 @@ function stepSnakes() {
 
 // draw snakes
 function drawSnakes() {
-  ctx.fillStyle = "rgba(0,0,0,0.1)";
+  ctx.fillStyle = "rgba(209, 21, 234, 0.1)";
   ctx.fillRect(0, 0, w, h);
 
   snakes.forEach((s) => {
