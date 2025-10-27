@@ -10,8 +10,8 @@ window.addEventListener("resize", () => {
 });
 
 // --- configuration ---
-const NUM_SNAKES = 6;
-const MAX_SEGMENTS = 60;
+const NUM_SNAKES = 20;
+const MAX_SEGMENTS = 100;
 const STEP_SIZE = 6;
 
 // --- snake setup ---
@@ -39,27 +39,42 @@ function stepSnakes() {
   snakes.forEach((s) => {
     // small random turn
     s.angle += (Math.random() - 0.5) * 0.5;
+
+    // save old position
+    const oldX = s.x;
+    const oldY = s.y;
+
     // forward motion
     s.x += Math.cos(s.angle) * STEP_SIZE;
     s.y += Math.sin(s.angle) * STEP_SIZE;
 
-    // wrap around edges
-    if (s.x < 0) s.x += w;
-    if (s.x > w) s.x -= w;
-    if (s.y < 0) s.y += h;
-    if (s.y > h) s.y -= h;
+    // check if wrapped — if so, break trail
+    let wrapped = false;
+    if (s.x < 0) { s.x += w; wrapped = true; }
+    if (s.x > w) { s.x -= w; wrapped = true; }
+    if (s.y < 0) { s.y += h; wrapped = true; }
+    if (s.y > h) { s.y -= h; wrapped = true; }
+
+    if (wrapped) {
+      // clear trail so no line connects across screen
+      s.trail = [];
+    }
 
     s.trail.push({ x: s.x, y: s.y });
     if (s.trail.length > MAX_SEGMENTS) s.trail.shift();
   });
 }
 
+
 // --- draw everything ---
 function drawSnakes() {
   // translucent fade background
-  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-  ctx.fillRect(0, 0, w, h);
-  ctx.globalCompositeOperation = "lighter"; // makes colors add like neon light
+    ctx.save();
+    ctx.translate(0.5, 0.5);
+    ctx.fillStyle = "rgba(0,0,0,0.15)";
+    ctx.fillRect(-0.5, -0.5, w + 1, h + 1);
+    ctx.restore();
+
 
 
   snakes.forEach((s) => {
