@@ -1,114 +1,159 @@
-/* === Snake Canvas Background === */
-#snake-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+@font-face {
+  font-family: "Todisco";
+  src: url("../fonts/MyriadVariableConcept-Roman.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+:root{
+  --text: rgba(0,0,0,.82);
+  --text2: rgba(0,0,0,.62);
+  --white: rgba(255,255,255,.92);
+  --shadow: 0 2px 18px rgba(0,0,0,.18);
+}
+
+*{ box-sizing:border-box; }
+html, body{
   height: 100%;
-  z-index: 0;            /* behind content */
-  background: transparent;
-  pointer-events: none;  /* let clicks go through */
-}
-
-/* === Disco Background Animation === */
-@keyframes colorPulse {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* === Neon Text Glow Animation === */
-@keyframes neonGlow {
-  0%, 100% {
-    text-shadow:
-      0 0 8px #ff00ff,
-      0 0 16px #00ffff,
-      0 0 24px #ff0080;
-  }
-  50% {
-    text-shadow:
-      0 0 16px #00ffea,
-      0 0 24px #ff00de,
-      0 0 32px #00ffff;
-  }
-}
-
-/* === Base Page === */
-body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
-  color: #e0e0e0;
-  background: linear-gradient(270deg, #050505, #0a001a, #000000);
-  background-size: 600% 600%;
-  animation: colorPulse 20s ease infinite;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  overflow: hidden;
+  font-family: "Todisco", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 }
 
-/* === Main Content (above canvas) === */
-main {
+
+.hero{
+  min-height: 100vh;
   position: relative;
-  z-index: 1; /* on top of snakes */
-  max-width: 800px;
-  padding: 2rem;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  background-image:
+    linear-gradient(to bottom, rgba(255,255,255,.35), rgba(255,255,255,.10)),
+    url("../img/Anker und Erde_Proportional Kopie.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* === Headline === */
-h1 {
-  font-size: 2.8rem;
-  margin-bottom: 0.5rem;
-  animation: neonGlow 3s infinite alternate;
+/* Top navigation */
+.nav{
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: 26px 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-/* === Paragraph === */
-p {
-  font-size: 1.2rem;
-  margin: 1rem 0;
-  color: #cccccc;
-  text-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
-}
-
-/* === Button === */
-.btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #ff00de, #00ffff, #ff8c00);
-  background-size: 300% 300%;
-  animation: colorPulse 6s ease infinite;
-  color: white;
-  padding: 0.8rem 1.6rem;
-  border-radius: 30px;
+.brand{
+  color: var(--text);
   text-decoration: none;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: .2px;
+  white-space: nowrap;
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(255, 0, 255, 0.9);
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: 28px;
 }
 
-/* === Scrollbar & Text Selection === */
-::-webkit-scrollbar {
-  width: 8px;
+.nav-links a{
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 2px;
+  position: relative;
 }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ff00de, #00ffff);
-  border-radius: 10px;
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:0;
+  width:0%;
+  height:1px;
+  background: currentColor;
+  opacity:.7;
+  transition: width 180ms ease;
 }
-::selection {
-  background: #ff00de;
-  color: white;
+
+.nav-links a:hover::after{ width:100%; }
+
+/* Center title */
+.hero-title{
+  margin: 0;
+  color: var(--white);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-shadow: var(--shadow);
+  font-size: clamp(20px, 3.2vw, 40px);
+  text-align: center;
+  user-select: none;
+  padding: 12px 16px;
+}
+
+/* Contact section */
+.contact{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 64px 18px;
+}
+
+.contact h2{
+  margin: 0 0 12px;
+  font-size: 28px;
+}
+
+.contact p{
+  margin: 0;
+  color: rgba(0,0,0,.72);
+  line-height: 1.7;
+}
+
+.contact a{ color: inherit; }
+
+@media (max-width: 640px){
+
+  .hero{
+    /* mobile viewport fix */
+    min-height: 100svh;
+    height: 100dvh;
+    overflow: visible;
+
+    /* mobile background */
+    background-image:
+      linear-gradient(to bottom, rgba(255,255,255,.35), rgba(255,255,255,.10)),
+      url("../img/background_mobile_2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* layout: title in lower third */
+    display: grid;
+    align-items: end;
+    justify-items: center;
+    padding-top: 64px;     /* space for fixed nav */
+    padding-bottom: 20svh; /* lower third */
+  }
+
+  .hero-title{
+    margin-bottom: 0;
+  }
+
+  .nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(6px);
+  }
 }
