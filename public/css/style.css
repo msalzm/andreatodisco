@@ -143,6 +143,9 @@ html, body{
 
   .hero-title{
     margin-bottom: 0;
+    font-size: 20px;      /* start here */
+    letter-spacing: 0.12em; /* optional: keeps it elegant when smaller */
+  
   }
 
   .nav{
@@ -156,5 +159,17 @@ html, body{
 
     background: transparent;   /* ← remove grey bar */
     backdrop-filter: none;     /* ← remove blur */
+  }
+
+  .brand{
+    font-size: 15px;       /* smaller than desktop */
+    letter-spacing: 0.15px; /* optional: keeps it clean */
+  }
+  .nav-links a{
+    font-size: 15px;       /* smaller links on mobile */
+    letter-spacing: 0.2px; /* optional, looks cleaner at small sizes */
+  }
+  .nav-links {
+    gap: 16px;              /* less gap on mobile */
   }
 }
