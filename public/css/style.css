@@ -138,7 +138,7 @@ html, body{
     align-items: end;
     justify-items: center;
     padding-top: 64px;     /* space for fixed nav */
-    padding-bottom: 20svh; /* lower third */
+    padding-bottom: 5svh; /* lower third */
   }
 
   .hero-title{
