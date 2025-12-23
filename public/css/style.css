@@ -170,6 +170,6 @@ html, body{
     letter-spacing: 0.2px; /* optional, looks cleaner at small sizes */
   }
   .nav-links {
-    gap: 16px;              /* less gap on mobile */
+    gap: 5px;              /* less gap on mobile */
   }
 }
