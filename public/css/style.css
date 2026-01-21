@@ -141,9 +141,9 @@ html, body{
 
   .brand{
     font-size: 13px;          
-    max-width: 65vw;          /* prevent crossing the rope */
+    /* max-width: 65vw;          prevent crossing the rope */
     overflow: hidden;
-    text-overflow: ellipsis;  
+    /* text-overflow: ellipsis;   */
     white-space: nowrap;
   }
 
