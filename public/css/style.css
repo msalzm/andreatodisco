@@ -140,8 +140,11 @@ html, body{
   }
 
   .brand{
-    font-size: 15px;
-    letter-spacing: 0.15px;
+    font-size: 13px;          /* smaller text */
+    max-width: 65vw;          /* prevent crossing the rope */
+    overflow: hidden;
+    text-overflow: ellipsis;  /* optional: trims if still too long */
+    white-space: nowrap;
   }
 
   .nav-links{
