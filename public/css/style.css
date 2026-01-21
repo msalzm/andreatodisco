@@ -55,7 +55,7 @@ html, body{
 .brand{
   color: var(--text);
   text-decoration: none;
-  font-size: 22px;
+  font-size: clamp(13px, 2.2vw, 22px);
   font-weight: 500;
   letter-spacing: .2px;
   white-space: nowrap;
@@ -70,7 +70,7 @@ html, body{
 .nav-links a{
   color: var(--text2);
   text-decoration: none;
-  font-size: 22px;
+  font-size: clamp(13px, 2.2vw, 22px);
   padding: 6px 2px;
   position: relative;
 }
@@ -112,57 +112,28 @@ html, body{
   white-space: nowrap;
   -webkit-text-stroke: 0;
 }
+.hero-title a,
+.hero-title a:link,
+.hero-title a:visited,
+.hero-title a:hover,
+.hero-title a:active,
+.hero-title a:focus{
+  color: inherit !important;
+  text-decoration: none !important;
+}
 
-/* MOBILE */
-@media (max-width: 768px){
 
-  .hero{
-    overflow: visible;  
-    padding-top: 64px;  
-  }
-
-  /* swap to a mobile-optimized image */
-  .hero-img{
-    content: url("../img/background_mobile_2.jpg");
-    object-position: center 50%; /* tune for mobile crop */
-  }
-
+@media (max-width: 1024px){
   .nav{
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-
     padding: 14px 16px;
-    background: transparent;
-    backdrop-filter: none;
   }
 
-  .brand{
-    font-size: 13px;          
-    /* max-width: 65vw;          prevent crossing the rope */
-    overflow: hidden;
-    /* text-overflow: ellipsis;   */
-    white-space: nowrap;
-  }
-
-  .nav-links{
-    gap: 5px;
-  }
-
-  .nav-links a{
-    font-size: 13px;      
-    font-weight: 500;   
-    letter-spacing: 0;   
-    padding: 0;         
+  .hero-img{
+    content: url("../img/background_mobile_2.jpg");
   }
 
   .hero-title{
-    font-size: 20px;
-    letter-spacing: 0.12em;
-    top: 80%; /* tune for mobile placement on brown area */
-    white-space: nowrap;
-    font-size: clamp(14px, 4.2vw, 20px);
+    top: 80%;
   }
 }
