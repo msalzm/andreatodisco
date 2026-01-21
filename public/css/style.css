@@ -15,28 +15,22 @@ html, body{
   font-family: "Myriad", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 }
 
-/* HERO */
 .hero{
   position: relative;
   height: 100dvh;
-  min-height: 100svh;   /* mobile-safe */
+  min-height: 100svh;   
   overflow: hidden;
 }
 
-/* Background photo (object-fit version of background-size: cover) */
 .hero-img{
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-  object-position: center 45%; /* tune to keep the brown area framed */
-
   z-index: 0;
 }
 
-/* TOP NAV */
 .nav{
   position: absolute;
   top: 0;
@@ -49,7 +43,7 @@ html, body{
   justify-content: space-between;
   gap: 16px;
 
-  z-index: 2; /* above image */
+  z-index: 2; 
 }
 
 .brand{
@@ -91,14 +85,11 @@ html, body{
   width:100%;
 }
 
-/* HERO TITLE (positioned over the image) */
 .hero-title{
   position: absolute;
   left: 50%;
-  top: 58%; /* tune 60%–70% to sit on the brown area */
   transform: translate(-50%, -50%);
   z-index: 2;
-
   margin: 0;
   color: var(--white);
   text-transform: uppercase;
@@ -112,6 +103,7 @@ html, body{
   white-space: nowrap;
   -webkit-text-stroke: 0;
 }
+
 .hero-title a,
 .hero-title a:link,
 .hero-title a:visited,
@@ -120,6 +112,19 @@ html, body{
 .hero-title a:focus{
   color: inherit !important;
   text-decoration: none !important;
+}
+
+.hero{
+  --imgY: 45%;
+  --titleY: 58%;
+}
+
+.hero-img{
+  object-position: center var(--imgY);
+}
+
+.hero-title{
+  top: var(--titleY);
 }
 
 
@@ -135,5 +140,10 @@ html, body{
 
   .hero-title{
     top: 80%;
+  }
+
+  .hero{
+    --imgY: 80%;
+    --titleY: 80%;
   }
 }
